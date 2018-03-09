@@ -1,11 +1,13 @@
 #!/bin/bash
 
+tmp_path="/tmp"
+
 pushd .
-mkdir -p  ~/tmp
-cd ~/tmp
+cd ${tmp_path}
+
 curl -O https://s3.amazonaws.com/img-datasets/mnist.pkl.gz
 gzip -d mnist.pkl.gz
 
-gsutil cp -r mnist.pkl gs://${BUCKET}/gmldata
+gsutil cp -r mnist.pkl gs://${GBUCKET}/gmldata
 
 popd
