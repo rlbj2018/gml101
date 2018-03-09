@@ -38,7 +38,7 @@ def load_mnist_pkl(train_file):
 
 # Create a function to allow for different training data and other options
 def train_model(train_file='mnist.pkl',
-                ml_job_dir='/tmp/mnist_mlp', **args):
+                ml_job_dir='/tmp', **args):
     # set the logging path for ML Engine logging to Storage bucket
 #    logs_path = job_dir + '/logs/' + datetime.now().isoformat()
 #    print('Using logs_path located at {}'.format(logs_path))
@@ -86,9 +86,9 @@ def train_model(train_file='mnist.pkl',
     model.save('model.h5')
 
     # Save the model to the Cloud Storage bucket's jobs directory
-    # with file_io.FileIO('model.h5', mode='r') as input_f:
-    #     with file_io.FileIO(job_dir + '/model.h5', mode='w+') as output_f:
-    #         output_f.write(input_f.read())
+    with file_io.FileIO('model.h5', mode='rb') as input_f:
+        with file_io.FileIO(ml_job_dir + '/model.h5', mode='wb+') as output_f:
+            output_f.write(input_f.read())
 
 
 if __name__ == '__main__':
