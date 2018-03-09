@@ -1,0 +1,85 @@
+http://dl4cv.pyimagesearch.com/supplementary-material/
+https://www.pyimagesearch.com/2017/09/25/configuring-ubuntu-for-deep-learning-with-python/
+
+$ sudo apt-get update
+$ sudo apt-get upgrade
+
+$ sudo apt-get install -y build-essential cmake git unzip pkg-config
+$ sudo apt-get install -y libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
+$ sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+$ sudo apt-get install -y libxvidcore-dev libx264-dev
+$ sudo apt-get install -y libgtk-3-dev
+$ sudo apt-get install -y libhdf5-serial-dev graphviz
+$ sudo apt-get install -y libopenblas-dev libatlas-base-dev gfortran
+$ sudo apt-get install -y python-tk python3-tk python-imaging-tk
+
+$ sudo apt-get install -y python2.7-dev python3-dev
+$ sudo apt-get install -y python-pip python3-pip
+
+$ wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+$ chmod u+x Miniconda3-latest-Linux-x86_64.sh
+$ ./Miniconda3-latest-Linux-x86_64.sh
+
+$ export PATH="/home/rendong/miniconda3/bin:$PATH"
+$ conda create -n dl4cv python=3.5.2 anaconda
+$ source activate dl4cv
+(dl4cv)$ conda install numpy scipy
+
+$ conda info --envs
+
+
+(dl4cv)
+$ mkdir -p ~/g; cd ~/g
+$ git config --globa ...
+$ git clone <opencv> ocv3.3
+$ git clone <opencv_contrib> ocv3.3_contrib
+
+$ cd ~/g/ocv3.3
+$ mkdir build
+$ cd build
+$ cmake -D CMAKE_BUILD_TYPE=RELEASE \
+    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D WITH_CUDA=OFF \
+    -D INSTALL_PYTHON_EXAMPLES=ON \
+    -D OPENCV_EXTRA_MODULES_PATH=~/g/ocv3.3_contrib/modules \
+    -D BUILD_EXAMPLES=ON ..
+$ make -j4 -k; make
+
+
+$ sudo make install
+$ sudo ldconfig
+
+# check make install output
+# -- Installing: /usr/local/lib/python3.5/site-packages/cv2.cpython-35m-x86_64-linux-gnu.so
+# -- Set runtime path of "/usr/local/lib/python3.5/site-packages/cv2.cpython-35m-x86_64-linux-gnu.so" to "/usr/local/lib"
+
+
+$ cd ~/miniconda3/envs/dl4cv/lib/python3.5/site-packages
+$ ln -s /usr/local/lib/python3.5/site-packages/cv2.cpython-35m-x86_64-linux-gnu.so .
+
+$ conda info --envs
+$ source activate dl4cv
+
+# test opencv install
+(dl4cv)$ python
+>>> import cv2
+>>> cv2.__version__
+'3.4.0-rc'
+
+(dl4cv)$ conda install -n dl4cv  scipy matplotlib pillow
+$ conda install -n dl4cv   h5py requests progressbar2
+$ pip install imutils 
+$ conda install  -n dl4cv scikit-learn scikit-image
+
+$ conda  install -n dl4cv tensorflow
+$ conda install  -n dl4cv  keras
+
+(dl4cv)$ python
+>>> import keras
+Using TensorFlow backend.
+
+# check ~/.keras/keras.json
+{
+"image_data_format": "channels_last",
+"backend": "tensorflow",
+}

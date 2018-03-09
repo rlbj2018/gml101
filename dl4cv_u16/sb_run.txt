@@ -1,0 +1,98 @@
+
+sudo apt-get install python3-tk
+sudo apt-get install python3.5-tk
+
+# using "screen" to run long back ground jobs
+https://debian-administration.org/article/34/Using_GNU_Screen
+
+# ch10
+python keras_cifar10.py --output output/keras_cifar10.png
+
+# ch11
+python convolutions.py --image jemma.png
+
+# ch12
+python shallownet_animals.py --dataset ../datasets/animals
+
+# Accuracy not matched
+python shallownet_cifar10.py
+
+
+# ch13
+
+import matplotlib
+matplotlib.use("tkagg")
+
+$ python shallownet_train.py --dataset ../datasets/animals \
+--model shallownet_weights.hdf5
+$ python shallownet_train.py --dataset ../datasets/animals \
+--model shallownet_weights.hdf5
+acc: 0.79
+$ ls
+
+$ python shallownet_load.py --dataset ../datasets/animals \
+--model shallownet_weights.hdf5
+$ python shallownet_load.py --dataset ../datasets/animals \
+--model shallownet_weights.hdf5
+
+
+# ch14
+import matplotlib
+matplotlib.use("tkagg")
+$ python lenet_mnist.py
+$ python lenet_mnist.py
+acc: 0.98
+
+
+
+# ch15
+$ python minivggnet_cifar10.py --output output/cifar10_minivggnet_with_bn.png
+acc: 0.83
+
+$ python minivggnet_cifar10.py --output output/cifar10_minivggnet_with_bn.png
+$ python minivggnet_cifar10.py --output output/cifar10_minivggnet_without_bn.png
+
+# ch16
+$ python cifar10_lr_decay.py --output output/lr_decay_f0.25_plot.png
+acc: 0.79
+
+# ch17
+$ python cifar10_monitor.py --output output
+
+
+# TODO
+
+
+# ch18
+$ python cifar10_checkpoint_improvements.py --weights weights/improvements
+$ find ./ -printf "%f\n" | sort
+
+
+$ python cifar10_checkpoint_best.py --weights test_best/cifar10_best_weights.hdf5
+$ ls -l weights/best/
+
+# CH19
+$ sudo apt-get install graphviz
+$ pip install graphviz==0.5.2
+$ pip install pydot-ng==1.0.0
+
+$ python visualize_architecture.py
+$ ls
+
+
+
+# CH20
+
+$ python imagenet_pretrained.py \
+--image example_images/example_01.jpg --model vgg16
+$ python imagenet_pretrained.py \
+--image example_images/example_02.jpg --model vgg19
+$ python imagenet_pretrained.py \
+--image example_images/example_03.jpg --model inception
+$ python imagenet_pretrained.py \
+--image example_images/example_04.jpg --model xception
+$ python imagenet_pretrained.py \
+--image example_images/example_05.jpg --model resnet
+Figure
+
+
